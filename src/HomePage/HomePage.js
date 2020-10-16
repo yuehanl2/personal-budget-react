@@ -1,4 +1,71 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+import axios from 'axios';
+//import * as d3 from 'd3';
+import Chart from 'chart.js';
+import PieD3 from '../Components/PieD3';
+
+
+
+var dataSource = {
+    datasets: [
+      {
+          data: [],
+          backgroundColor: [
+              '#ffcd56',
+              '#ff6384',
+              '#36a2eb',
+              '#fd6b19',
+              '#04B45F',
+              '#2E3B0B',
+              '#FE2EF7',
+
+          ],
+       
+      }
+  ],
+  labels: [],
+};
+
+
+
+function createChart(){
+    var ctx = document.getElementById("myChart");
+    var myPieChart = new Chart(ctx,{
+        type: 'pie',
+        data: dataSource
+    });
+}
+
+function getBudget(){
+    axios.get('http://localhost:3000/budget')
+      .then(function (res){
+          console.log(res);
+          for(var i = 0; i <7; i++){
+              dataSource.datasets[0].data[i]=res.data[i].budget;
+              dataSource.labels[i]=res.data[i].title;
+              
+          }
+          createChart();
+
+    //var data = dataSource.datasets[0].data;
+   // var labels = dataSource.labels;
+    //var colors = dataSource.datasets[0].backgroundColor;
+   // console.log(colors);
+
+
+      });
+}
+
+getBudget();
+
+
+
+  
+  
+
+
+
 
 function HomePage() {
   return (
@@ -62,7 +129,7 @@ function HomePage() {
     <div className="text-box">
         <h3>D3js pie</h3>
         <h2>
-            <div id="d3Pie"></div>
+            <PieD3/>
         </h2>
     </div>
 
@@ -78,5 +145,7 @@ function HomePage() {
 </div>
   );
 }
+
+
 
 export default HomePage;

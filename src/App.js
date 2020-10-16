@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+//import ChartJS from './Components/ChartJS'
+
+
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  //Link
 } from "react-router-dom";
 
 import Menu from './Menu/Menu';
@@ -14,7 +17,8 @@ import HomePage from './HomePage/HomePage';
 //import LoginPage from './LoginPage/LoginPage';  <LoginPage></LoginPage>
 import Footer from './Footer/Footer';
 import AboutPage from './AboutPage/AboutPage';
-import LoginPage from './LoginPage/LoginPgae';
+import LoginPage from './LoginPage/LoginPage';
+//import PieD3 from './Components/PieD3'
 
 
 function App() {
@@ -37,9 +41,12 @@ function App() {
           </Route>
 
         </Switch>
+        
 
 
         <Footer/>
+
+
       </div>
 
     
